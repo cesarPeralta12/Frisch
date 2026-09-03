@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <%# ---- HERO ---------------------------------------------------------
+        PROVISIONAL: titular y bajada a confirmar con la empresa.
+        La lata es un dibujo en CSS; cuando haya foto real, reemplazar el
+        bloque .hero__figura por una <img>.
+    --%>
+    <section class="hero">
+      <div class="contenedor hero__grilla">
+        <div class="hero__texto">
+          <p class="etiqueta">Cero azucar anadida</p>
+          <h1>Sabor de verdad,<br>sin azucar.</h1>
+          <p class="hero__bajada">
+            Refrescos elaborados en Bolivia para quienes no quieren elegir
+            entre cuidarse y disfrutar. Todo el sabor, nada que sobre.
+          </p>
+          <div class="hero__acciones">
+            <a class="boton boton--principal" href="#productos">Ver productos</a>
+            <a class="boton boton--linea" href="#comprar">Donde comprar</a>
+          </div>
+        </div>
+
+        <div class="hero__figura" aria-hidden="true">
+          <div class="lata">
+            <div class="lata__cuerpo">
+              <span class="lata__marca">Frisch</span>
+              <span class="lata__sabor">sin azucar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%# ---- BENEFICIOS ---------------------------------------------------- %>
+    <section class="beneficios">
+      <div class="contenedor beneficios__grilla">
+        <article>
+          <h3>Sin azucar anadida</h3>
+          <p>Endulzado sin sumar azucar. El sabor viene de la fruta, no del almibar.</p>
+        </article>
+        <article>
+          <h3>Hecho en Bolivia</h3>
+          <p>Produccion nacional, con control de calidad en cada lote.</p>
+        </article>
+        <article>
+          <h3>Para todos los dias</h3>
+          <p>Liviano, refrescante y pensado para acompanar sin culpa.</p>
+        </article>
+      </div>
+    </section>
+
+    <%# ---- PRODUCTOS ------------------------------------------------------
+        PROVISIONAL: los cuatro sabores son de relleno. Confirmar la linea
+        real con la empresa y reemplazar nombre, descripcion y color.
+    --%>
+    <section class="seccion" id="productos">
+      <div class="contenedor">
+        <p class="etiqueta">Nuestra linea</p>
+        <h2>Cuatro sabores, cero azucar</h2>
+        <p class="seccion__bajada">
+          Cada sabor nace de una fruta que ya conoces. La diferencia esta en
+          lo que le sacamos, no en lo que le agregamos.
+        </p>
+
+        <div class="productos">
+          <article class="producto" style="--tono:#c8e26a">
+            <div class="producto__figura" aria-hidden="true"><span>Limon</span></div>
+            <h3>Limon</h3>
+            <p>Acido, directo y muy fresco. El clasico que nunca falla.</p>
+          </article>
+          <article class="producto" style="--tono:#f2b23c">
+            <div class="producto__figura" aria-hidden="true"><span>Maracuya</span></div>
+            <h3>Maracuya</h3>
+            <p>Intenso y tropical, con ese punto acido que despierta.</p>
+          </article>
+          <article class="producto" style="--tono:#f08a5d">
+            <div class="producto__figura" aria-hidden="true"><span>Durazno</span></div>
+            <h3>Durazno</h3>
+            <p>Suave y redondo. El mas dulce de la linea, sin serlo.</p>
+          </article>
+          <article class="producto" style="--tono:#f4a63a">
+            <div class="producto__figura" aria-hidden="true"><span>Mandarina</span></div>
+            <h3>Mandarina</h3>
+            <p>Citrico ligero, con aroma que se siente antes del primer sorbo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <%# ---- LA MARCA ------------------------------------------------------- %>
+    <section class="seccion seccion--oscura" id="marca">
+      <div class="contenedor marca-bloque">
+        <div>
+          <p class="etiqueta etiqueta--clara">La marca</p>
+          <h2>Nacimos de una pregunta simple</h2>
+          <p>
+            Por que un refresco tiene que estar cargado de azucar para saber
+            bien? Frisch nacio buscando esa respuesta, y termino siendo una
+            linea de bebidas que no pide disculpas por ser liviana.
+          </p>
+          <p>
+            Trabajamos con fruta, no con formulas. Y probamos cada lote hasta
+            que el sabor esta donde queremos.
+          </p>
+        </div>
+        <dl class="cifras">
+          <div>
+            <dt>0 g</dt>
+            <dd>azucar anadida</dd>
+          </div>
+          <div>
+            <dt>100%</dt>
+            <dd>produccion nacional</dd>
+          </div>
+          <div>
+            <dt>4</dt>
+            <dd>sabores en linea</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <%# ---- DONDE COMPRAR --------------------------------------------------
+        PROVISIONAL: reemplazar por los puntos de venta reales o por un
+        mapa cuando la empresa pase la lista.
+    --%>
+    <section class="seccion" id="comprar">
+      <div class="contenedor">
+        <p class="etiqueta">Donde comprar</p>
+        <h2>Cerca tuyo</h2>
+        <p class="seccion__bajada">
+          Nos encontras en supermercados, tiendas de barrio y puntos
+          seleccionados. Escribinos y te decimos cual te queda mas cerca.
+        </p>
+
+        <div class="cta-caja">
+          <div>
+            <h3>Queres vender Frisch?</h3>
+            <p>Si tenes un negocio y te interesa distribuir la marca, hablemos.</p>
+          </div>
+          <div class="cta-caja__acciones">
+            <% if (site.whatsapp) { %>
+              <a class="boton boton--principal" href="https://wa.me/<%= site.whatsapp %>">WhatsApp</a>
+            <% } %>
+            <a class="boton boton--linea" href="mailto:<%= site.email %>">Escribir un correo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

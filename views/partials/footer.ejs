@@ -1,0 +1,29 @@
+<footer class="pie" id="contacto">
+  <div class="contenedor pie__grilla">
+    <div>
+      <p class="pie__marca"><%= site.name %></p>
+      <p class="pie__lema"><%= site.tagline %></p>
+      <p class="pie__dato"><%= site.location %></p>
+    </div>
+
+    <div>
+      <p class="pie__titulo">Contacto</p>
+      <p><a href="mailto:<%= site.email %>"><%= site.email %></a></p>
+      <% if (site.whatsapp) { %>
+        <p><a href="https://wa.me/<%= site.whatsapp %>">Escribinos por WhatsApp</a></p>
+      <% } %>
+    </div>
+
+    <div>
+      <p class="pie__titulo">Seguinos</p>
+      <p><a href="<%= site.instagram %>" target="_blank" rel="noopener">Instagram</a></p>
+      <p><a href="<%= site.tiktok %>" target="_blank" rel="noopener">TikTok</a></p>
+    </div>
+  </div>
+
+  <div class="contenedor pie__legal">
+    <p>&copy; <%= site.year %> <%= site.name %>. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
