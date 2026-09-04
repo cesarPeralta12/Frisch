@@ -10,12 +10,12 @@ const PORT = process.env.PORT || 3000;
 // Todo lo que un dia pueda cambiar el cliente vive aca, no en las vistas.
 const site = {
   name: 'Frisch',
-  tagline: 'Refrescos sin azucar',
+  tagline: 'Bebida gaseosa sin azucar',
   // WhatsApp en formato internacional SIN el signo +. Si se deja vacio,
   // el boton de WhatsApp no se muestra.
-  whatsapp: process.env.WHATSAPP_NUMBER === undefined ? '' : process.env.WHATSAPP_NUMBER.trim(),
+  whatsapp: process.env.WHATSAPP_NUMBER === undefined ? '59177808029' : process.env.WHATSAPP_NUMBER.trim(),
   email: process.env.CONTACT_EMAIL || 'info@frischbo.com',
-  location: process.env.CONTACT_LOCATION || 'Bolivia',
+  location: process.env.CONTACT_LOCATION || 'La Paz - Bolivia',
   instagram: process.env.INSTAGRAM_URL || 'https://www.instagram.com/frischbo/',
   tiktok: process.env.TIKTOK_URL || 'https://www.tiktok.com/@frischbo',
   year: new Date().getFullYear(),

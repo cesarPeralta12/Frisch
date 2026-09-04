@@ -34,21 +34,29 @@ Se configuran en Coolify, pestana *Environment Variables*. Ver `.env.example`.
 | `CONTACT_LOCATION` | Ciudad y pais del pie. |
 | `INSTAGRAM_URL` / `TIKTOK_URL` | Enlaces de redes. |
 
-## Pendiente de reemplazar
+## Contenido
 
-Todo lo marcado como `PROVISIONAL` en el codigo es contenido de relleno y hay
-que confirmarlo con la empresa:
+Los datos de marca salen del Instagram oficial (@frischbo): eslogan, los tres
+sabores (guayaba, cocoloco, chirimoya), el WhatsApp y los canales de venta
+(Hipermaxi, PedidosYa, Market Tu Super).
+
+### Pendiente de reemplazar
+
+Lo marcado como `PROVISIONAL` en el codigo sigue sin confirmar:
 
 - [ ] **Paleta de colores** — las variables al inicio de `public/css/estilos.css`.
+      Hoy es un verde/lima generico, no el de la marca.
+- [ ] **Color de cada sabor** — el `--tono` de cada tarjeta en `#productos`
+      es una interpretacion de "tres colores para celebrar Bolivia".
+      Confirmar contra las latas reales.
 - [ ] **Logo** — hoy es texto. Reemplazar en `views/partials/header.ejs`.
 - [ ] **Favicon** — `public/img/favicon.svg`, hoy es un circulo generico.
-- [ ] **Foto de producto del hero** — hoy es una lata dibujada en CSS
-      (`.lata` en el CSS). Cambiar por una `<img>` real.
-- [ ] **Los cuatro sabores** — nombres, descripciones y colores en
-      `views/landing.ejs`, seccion `#productos`.
-- [ ] **Textos de "La marca"** y las tres cifras.
-- [ ] **Puntos de venta reales** en la seccion `#comprar`.
-- [ ] **Numero de WhatsApp** — falta el dato.
+- [ ] **Fotos de producto** — el hero usa una lata dibujada en CSS (`.lata`) y
+      las tarjetas de sabor usan un degradado con el nombre encima.
+- [ ] **Enlaces de compra** — falta el link directo de PedidosYa y el de la
+      app propia que promocionan en Instagram.
+- [ ] **Descripciones de los sabores** — escritas por aproximacion, conviene
+      que las valide la empresa.
 
 ## Despliegue
 
