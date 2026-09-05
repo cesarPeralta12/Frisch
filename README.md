@@ -36,23 +36,31 @@ Se configuran en Coolify, pestana *Environment Variables*. Ver `.env.example`.
 
 ## Contenido
 
-Los datos de marca salen del Instagram oficial (@frischbo): eslogan, los tres
-sabores (guayaba, cocoloco, chirimoya), el WhatsApp y los canales de venta
-(Hipermaxi, PedidosYa, Market Tu Super).
+El diseno usa el material grafico oficial que paso el cliente: logotipo,
+fotos de botella, patrones de cada sabor y fondo tropical. Los textos, los
+canales de venta y el WhatsApp salen del Instagram oficial (@frischbo).
 
-### Pendiente de reemplazar
+Las imagenes de `public/img/` estan reducidas y optimizadas para web; los
+originales (algunos de 4000x6000 px) no van al repositorio.
 
-Lo marcado como `PROVISIONAL` en el codigo sigue sin confirmar:
+### Tipografias
 
-- [ ] **Paleta de colores** — las variables al inicio de `public/css/estilos.css`.
-      Hoy es un verde/lima generico, no el de la marca.
-- [ ] **Color de cada sabor** — el `--tono` de cada tarjeta en `#productos`
-      es una interpretacion de "tres colores para celebrar Bolivia".
-      Confirmar contra las latas reales.
-- [ ] **Logo** — hoy es texto. Reemplazar en `views/partials/header.ejs`.
-- [ ] **Favicon** — `public/img/favicon.svg`, hoy es un circulo generico.
-- [ ] **Fotos de producto** — el hero usa una lata dibujada en CSS (`.lata`) y
-      las tarjetas de sabor usan un degradado con el nombre encima.
+Se usa **Asap**, que es la tipografia de marca y esta en Google Fonts con
+licencia libre, mas **Fredoka** para titulos por ser redondeada como el
+logotipo.
+
+Las otras fuentes que mando el cliente (MuseoSansRounded, Bebas Kai,
+Big Jano) **no se incrustan a proposito**: venian en el paquete de imprenta,
+y una licencia de impresion no cubre el uso como webfont.
+
+### Pendiente
+
+- [ ] **Video** — la seccion existe pero solo aparece si se configura la
+      variable `VIDEO_URL` en Coolify, con la URL de insercion (embed).
+      El cliente mando los graficos de "MIRA EL VIDEO" pero ningun video.
+- [ ] **Guayaba** — el Instagram menciona ese sabor, pero en el material
+      no hay ni una imagen. La web muestra solo Chirimoya y Coco Loco.
+      Confirmar si existe y pedir la foto.
 - [ ] **Enlaces de compra** — falta el link directo de PedidosYa y el de la
       app propia que promocionan en Instagram.
 - [ ] **Descripciones de los sabores** — escritas por aproximacion, conviene
