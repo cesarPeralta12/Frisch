@@ -7,126 +7,131 @@
   <%- include('partials/header') %>
 
   <main>
-    <%# ---- HERO ---------------------------------------------------------
-        El titular y la bajada salen del eslogan real de la marca.
-        La lata es un dibujo en CSS; cuando haya foto de producto,
-        reemplazar el bloque .hero__figura por una <img>.
-    --%>
+    <%# ---- HERO ---------------------------------------------------------- %>
     <section class="hero">
+      <img class="hero__deco hero__deco--cocos" src="/img/cocos.png" alt="" aria-hidden="true">
+      <img class="hero__deco hero__deco--chiris" src="/img/chirimoyas.png" alt="" aria-hidden="true">
+
       <div class="contenedor hero__grilla">
         <div class="hero__texto">
           <p class="etiqueta">Bebida gaseosa sin azucar</p>
-          <h1>Atrevete a lo nuevo.</h1>
+          <h1>Atrevete<br>a lo nuevo.</h1>
           <p class="hero__bajada">
-            El sabor que sorprende. Tres sabores bolivianos, cero azucar, toda
-            la burbuja. Para los que quieren algo distinto de lo de siempre.
+            El sabor que sorprende. Chirimoya y Coco Loco, dos sabores
+            bolivianos con toda la burbuja y cero azucar.
           </p>
           <div class="hero__acciones">
-            <a class="boton boton--principal" href="#productos">Ver sabores</a>
+            <a class="boton boton--principal" href="#sabores">Ver los sabores</a>
             <a class="boton boton--linea" href="#comprar">Donde comprar</a>
           </div>
         </div>
 
-        <div class="hero__figura" aria-hidden="true">
-          <div class="lata">
-            <div class="lata__cuerpo">
-              <span class="lata__marca">Frisch</span>
-              <span class="lata__sabor">sin azucar</span>
-            </div>
-          </div>
+        <div class="hero__botellas">
+          <img src="/img/botella-chirimoya.png" alt="Frisch Chirimoya" width="667" height="1000">
+          <img src="/img/botella-cocoloco.png" alt="Frisch Coco Loco" width="631" height="1000">
         </div>
       </div>
+
+      <%# Onda decorativa que empalma con el color de fondo de la pagina. %>
+      <svg class="onda" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#fff8ef" d="M0,45 C240,90 480,0 720,25 C960,50 1200,90 1440,55 L1440,90 L0,90 Z"></path>
+      </svg>
     </section>
 
-    <%# ---- BENEFICIOS ---------------------------------------------------- %>
-    <section class="beneficios">
-      <div class="contenedor beneficios__grilla">
-        <article>
-          <h3>Cero azucar</h3>
-          <p>Toda la gaseosa, sin el azucar. Sin renunciar al sabor ni a la burbuja.</p>
-        </article>
-        <article>
-          <h3>Sabores nuestros</h3>
-          <p>Cocoloco, guayaba y chirimoya. Frutas que ya conoces, en formato gaseosa.</p>
-        </article>
-        <article>
-          <h3>Hecho en Bolivia</h3>
-          <p>Produccion nacional, pensada para el gusto de aca.</p>
-        </article>
-      </div>
-    </section>
-
-    <%# ---- PRODUCTOS ------------------------------------------------------
-        Los tres sabores son los reales de la linea.
-        PROVISIONAL: los colores de cada uno son una interpretacion de
-        "tres colores, tres sabores para celebrar Bolivia". Confirmar
-        contra las latas reales y ajustar el --tono de cada tarjeta.
+    <%# ---- SABORES --------------------------------------------------------
+        Solo hay material grafico de Chirimoya y Coco Loco. Si la empresa
+        confirma un tercer sabor, se agrega una tarjeta mas con su foto.
     --%>
-    <section class="seccion" id="productos">
+    <section class="seccion" id="sabores">
       <div class="contenedor">
         <p class="etiqueta">Nuestra linea</p>
-        <h2>Tres colores, tres sabores</h2>
+        <h2>Dos sabores que no veias venir</h2>
         <p class="seccion__bajada">
-          Tres sabores para celebrar Bolivia. Cada uno con su personalidad, y
-          los tres con lo mismo en comun: nada de azucar.
+          Frutas de aca, en formato gaseosa. Sin azucar, sin quedarse corto
+          de sabor.
         </p>
 
-        <div class="productos">
-          <article class="producto" style="--tono:#e0483c">
-            <div class="producto__figura" aria-hidden="true"><span>Guayaba</span></div>
-            <h3>Guayaba</h3>
-            <p>Dulce y con caracter. El sabor mas reconocible de la linea.</p>
-          </article>
-          <article class="producto" style="--tono:#f2c14e">
-            <div class="producto__figura" aria-hidden="true"><span>Cocoloco</span></div>
-            <h3>Cocoloco</h3>
-            <p>Coco de verdad, suave y tropical. El que nadie espera en una gaseosa.</p>
-          </article>
-          <article class="producto" style="--tono:#5cb85c">
-            <div class="producto__figura" aria-hidden="true"><span>Chirimoya</span></div>
+        <div class="sabores">
+          <article class="sabor" style="--fondo:url('/img/patron-chirimoya.jpg')">
+            <img class="sabor__botella" src="/img/botella-chirimoya.png"
+                 alt="Botella de Frisch Chirimoya" loading="lazy">
+            <span class="sabor__pastilla">Cero azucar</span>
             <h3>Chirimoya</h3>
-            <p>Cremoso y distinto. Para el que se anima a probar algo nuevo.</p>
+            <p>Dulce, cremosa y distinta. La fruta que todos conocen, como nunca la probaste.</p>
+          </article>
+
+          <article class="sabor" style="--fondo:url('/img/patron-coco.jpg')">
+            <img class="sabor__botella" src="/img/botella-cocoloco.png"
+                 alt="Botella de Frisch Coco Loco" loading="lazy">
+            <span class="sabor__pastilla">Cero azucar</span>
+            <h3>Coco Loco</h3>
+            <p>Coco de verdad, suave y tropical. El que nadie espera encontrar en una gaseosa.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <%# ---- LA MARCA ------------------------------------------------------- %>
-    <section class="seccion seccion--oscura" id="marca">
-      <div class="contenedor marca-bloque">
-        <div>
-          <p class="etiqueta etiqueta--clara">La marca</p>
-          <h2>El sabor que sorprende</h2>
-          <p>
-            Frisch nacio de una idea sencilla: que una gaseosa sin azucar no
-            tenia por que saber a menos. Y que en vez de copiar los sabores de
-            siempre, valia la pena usar los nuestros.
-          </p>
-          <p>
-            Por eso la linea son tres colores y tres sabores para celebrar
-            Bolivia. Nada de azucar, todo el gusto.
-          </p>
+    <%# ---- VIDEO ----------------------------------------------------------
+        La seccion solo aparece si VIDEO_URL esta configurada en Coolify.
+        Debe ser una URL de insercion (embed), no la del navegador.
+    --%>
+    <% if (site.video) { %>
+      <section class="seccion seccion--morada" id="video">
+        <div class="contenedor video-bloque">
+          <div class="video-bloque__llamada">
+            <img src="/img/mira-el-video.png" alt="Mira el video" loading="lazy">
+          </div>
+          <div class="video-marco">
+            <iframe src="<%= site.video %>" title="Video de Frisch"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
+          </div>
         </div>
-        <dl class="cifras">
-          <div>
-            <dt>0 g</dt>
-            <dd>azucar</dd>
-          </div>
-          <div>
-            <dt>3</dt>
-            <dd>sabores en linea</dd>
-          </div>
-          <div>
-            <dt>100%</dt>
-            <dd>boliviana</dd>
-          </div>
-        </dl>
+      </section>
+    <% } %>
+
+    <%# ---- FRANJA TROPICAL ------------------------------------------------ %>
+    <section class="franja">
+      <div class="contenedor">
+        <h2>El sabor que sorprende</h2>
+        <p>Tomala bien fria. Es cuando mejor se siente.</p>
       </div>
     </section>
 
-    <%# ---- DONDE COMPRAR --------------------------------------------------
+    <%# ---- BENEFICIOS ------------------------------------------------------ %>
+    <section class="seccion beneficios" id="marca">
+      <div class="contenedor">
+        <p class="etiqueta">La marca</p>
+        <h2>Sin azucar, sin excusas</h2>
+        <p class="seccion__bajada">
+          Frisch nacio de una idea sencilla: que una gaseosa sin azucar no
+          tenia por que saber a menos, y que en vez de copiar los sabores de
+          siempre valia la pena usar los nuestros.
+        </p>
+
+        <div class="beneficios__grilla">
+          <article>
+            <span class="beneficios__cifra">0 g</span>
+            <h3>Cero azucar</h3>
+            <p>Toda la gaseosa, sin el azucar. Sin renunciar al sabor ni a la burbuja.</p>
+          </article>
+          <article>
+            <span class="beneficios__cifra">2</span>
+            <h3>Sabores nuestros</h3>
+            <p>Chirimoya y Coco Loco. Frutas que ya conoces, en un formato que no esperabas.</p>
+          </article>
+          <article>
+            <span class="beneficios__cifra">100%</span>
+            <h3>Boliviana</h3>
+            <p>Produccion nacional, pensada para el gusto de aca.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <%# ---- DONDE COMPRAR ---------------------------------------------------
         Canales tomados de las publicaciones de la marca.
-        PROVISIONAL: falta el enlace directo a PedidosYa y a la app propia.
+        PROVISIONAL: falta el enlace directo de PedidosYa y el de la app propia.
     --%>
     <section class="seccion" id="comprar">
       <div class="contenedor">
@@ -144,7 +149,7 @@
           </article>
           <article class="punto">
             <h3>PedidosYa</h3>
-            <p>Pedila por delivery y te llega fria a la puerta.</p>
+            <p>Pidela por delivery y te llega fria a la puerta.</p>
           </article>
           <article class="punto">
             <h3>Market Tu Super</h3>

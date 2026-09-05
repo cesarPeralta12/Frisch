@@ -17,6 +17,8 @@ const site = {
   email: process.env.CONTACT_EMAIL || 'info@frischbo.com',
   location: process.env.CONTACT_LOCATION || 'La Paz - Bolivia',
   instagram: process.env.INSTAGRAM_URL || 'https://www.instagram.com/frischbo/',
+  // URL de insercion (embed) del video. Si esta vacia, la seccion no se muestra.
+  video: process.env.VIDEO_URL === undefined ? '' : process.env.VIDEO_URL.trim(),
   tiktok: process.env.TIKTOK_URL || 'https://www.tiktok.com/@frischbo',
   year: new Date().getFullYear(),
 };
