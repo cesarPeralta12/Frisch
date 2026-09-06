@@ -6,6 +6,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Version de los recursos estaticos. Cambia en cada arranque del contenedor,
+// o sea en cada despliegue. Se agrega como ?v= a la hoja de estilos y al JS
+// para que el navegador no siga usando una version vieja en cache.
+const version = Date.now().toString(36);
+
 // ---- Configuracion del negocio (editable por variables de entorno) ----
 // Todo lo que un dia pueda cambiar el cliente vive aca, no en las vistas.
 const site = {
@@ -17,6 +22,7 @@ const site = {
   email: process.env.CONTACT_EMAIL || 'info@frischbo.com',
   location: process.env.CONTACT_LOCATION || 'La Paz - Bolivia',
   instagram: process.env.INSTAGRAM_URL || 'https://www.instagram.com/frischbo/',
+  v: version,
   // URL de insercion (embed) del video. Si esta vacia, la seccion no se muestra.
   video: process.env.VIDEO_URL === undefined ? '' : process.env.VIDEO_URL.trim(),
   tiktok: process.env.TIKTOK_URL || 'https://www.tiktok.com/@frischbo',
@@ -26,7 +32,10 @@ const site = {
 // ---- Middlewares ----
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '7d' }));
+// Las imagenes se pueden cachear mucho tiempo; la CSS y el JS no, porque
+// cambian con cada despliegue y se versionan con ?v= en las plantillas.
+app.use('/img', express.static(path.join(__dirname, 'public/img'), { maxAge: '30d' }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0, etag: true }));
 
 // Hace disponible "site" en todas las vistas
 app.use((req, res, next) => {

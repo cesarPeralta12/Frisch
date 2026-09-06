@@ -333,6 +333,103 @@ img { max-width: 100%; height: auto; display: block; }
   .sabor__botella { height: 48%; }
 }
 
+/* =====================================================================
+   Movimiento
+   Todo lo de abajo es decorativo. Al final del archivo se desactiva
+   entero si el sistema pide menos movimiento.
+   ===================================================================== */
+
+html { scroll-behavior: smooth; }
+
+/* ---- Barra de progreso de lectura ---- */
+.progreso {
+  position: fixed; top: 0; left: 0; z-index: 60;
+  height: 4px; width: 100%;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--amarillo), var(--morado-claro));
+}
+
+/* ---- Cabecera que se compacta al bajar ---- */
+.cabecera { transition: box-shadow .25s ease, background .25s ease; }
+.cabecera__fila { transition: min-height .25s ease; }
+.marca img { transition: height .25s ease; }
+.cabecera.compacta { box-shadow: 0 6px 24px rgba(58, 15, 82, .12); }
+.cabecera.compacta .cabecera__fila { min-height: 62px; }
+.cabecera.compacta .marca img { height: 34px; }
+
+/* ---- Burbujas del hero ---- */
+.burbujas {
+  position: absolute; inset: 0; z-index: 1;
+  overflow: hidden; pointer-events: none;
+}
+.burbujas span {
+  position: absolute; bottom: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(255,255,255,.75), rgba(255,255,255,.12) 60%);
+  border: 1px solid rgba(255,255,255,.35);
+  animation: subir linear infinite;
+}
+@keyframes subir {
+  0%   { transform: translateY(0) translateX(0) scale(.7); opacity: 0; }
+  12%  { opacity: .85; }
+  85%  { opacity: .5; }
+  100% { transform: translateY(-115vh) translateX(24px) scale(1.1); opacity: 0; }
+}
+
+/* ---- Botellas que flotan ---- */
+.hero__botellas img { animation: flotar 5.5s ease-in-out infinite; }
+.hero__botellas img:last-child { animation-delay: -2.6s; }
+@keyframes flotar {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -16px; }
+}
+
+/* ---- Flecha de bajar ---- */
+.bajar {
+  position: absolute; bottom: 74px; left: 50%; z-index: 3;
+  translate: -50% 0;
+  display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.5); color: #fff;
+  text-decoration: none;
+  animation: rebotar 2.2s ease-in-out infinite;
+}
+.bajar:hover { background: rgba(255,255,255,.15); }
+@keyframes rebotar {
+  0%, 100% { translate: -50% 0; }
+  50%      { translate: -50% 10px; }
+}
+
+/* ---- Aparicion al hacer scroll ---- */
+.js .revelar {
+  opacity: 0; translate: 0 28px;
+  transition: opacity .7s ease, translate .7s ease;
+}
+.js .revelar.visible { opacity: 1; translate: 0 0; }
+.revelar--2 { transition-delay: .12s; }
+.revelar--3 { transition-delay: .24s; }
+
+/* ---- Reacciones al pasar el mouse ---- */
+.sabor { transition: transform .3s ease, box-shadow .3s ease; }
+.sabor:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(58,15,82,.28); }
+.sabor__botella { transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.sabor:hover .sabor__botella { transform: scale(1.07) rotate(-3deg); }
+
+.punto, .beneficios article {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.punto:hover, .beneficios article:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px rgba(58,15,82,.2);
+}
+
+/* ---- Sin movimiento si el sistema lo pide ---- */
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .revelar { opacity: 1; translate: none; }
+  .burbujas, .bajar { display: none; }
 }

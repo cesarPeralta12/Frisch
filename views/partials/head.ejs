@@ -1,4 +1,7 @@
 <meta charset="utf-8">
+<%# Marca que el JS esta activo. Las animaciones de entrada esconden bloques,
+    asi que si el script fallara el contenido tiene que verse igual. %>
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><%= site.name %> · <%= site.tagline %></title>
 <meta name="description" content="<%= site.name %>, bebida gaseosa sin azucar. Atrevete a lo nuevo, el sabor que sorprende. Chirimoya y Coco Loco, hechas en Bolivia.">
@@ -18,4 +21,4 @@
 <%# Asap es la tipografia de marca (esta en Google Fonts, licencia libre).
     Fredoka acompana en los titulos por ser redondeada como el logotipo. %>
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/estilos.css">
+<link rel="stylesheet" href="/css/estilos.css?v=<%= site.v %>">
