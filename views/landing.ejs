@@ -98,19 +98,28 @@
 
         <div class="sabores">
           <%
+            // Los sabores con foto de botella usan el patron de su sabor de
+            // fondo; los que todavia no tienen foto se muestran con la
+            // inicial. Para sumar una foto basta con agregar img y fondo.
             const sabores = [
               { n: '01', sigla: 'G',  mood: 'Vibrante',  nombre: 'Guayaba',    tono: '#e8455f' },
-              { n: '02', sigla: 'Ch', mood: 'Suave',     nombre: 'Chirimoya',  tono: '#9b47c9' },
-              { n: '03', sigla: 'C',  mood: 'Inesperado',nombre: 'Coco',       tono: '#f2c14e' },
+              { n: '02', sigla: 'Ch', mood: 'Suave',     nombre: 'Chirimoya',  tono: '#9b47c9',
+                img: '/img/botella-chirimoya.png', fondo: '/img/patron-chirimoya.jpg' },
+              { n: '03', sigla: 'C',  mood: 'Inesperado',nombre: 'Coco',       tono: '#f2c14e',
+                img: '/img/botella-cocoloco.png',  fondo: '/img/patron-coco.jpg' },
               { n: '04', sigla: 'A',  mood: 'Amazónico', nombre: 'Achachairú', tono: '#f2872f' },
             ];
           %>
           <% sabores.forEach(function (s, i) { %>
-            <a class="sabor revelar<%= i % 3 ? ' revelar--' + ((i % 3) + 1) : '' %>"
-               style="--tono:<%= s.tono %>"
+            <a class="sabor<%= s.img ? ' sabor--foto' : '' %> revelar<%= i % 3 ? ' revelar--' + ((i % 3) + 1) : '' %>"
+               style="--tono:<%= s.tono %><%= s.fondo ? ";--fondo:url('" + s.fondo + "')" : '' %>"
                <% if (site.whatsapp) { %>href="<%= site.wa('Hola! Quiero pedir Frisch ' + s.nombre + '.') %>" target="_blank" rel="noopener"<% } else { %>href="#comprar"<% } %>>
               <span class="sabor__numero"><%= s.n %></span>
-              <span class="sabor__sigla" aria-hidden="true"><%= s.sigla %></span>
+              <% if (s.img) { %>
+                <img class="sabor__foto" src="<%= s.img %>" alt="Botella de Frisch <%= s.nombre %>" loading="lazy">
+              <% } else { %>
+                <span class="sabor__sigla" aria-hidden="true"><%= s.sigla %></span>
+              <% } %>
               <span class="sabor__mood"><%= s.mood %></span>
               <h3><%= s.nombre %></h3>
               <span class="sabor__flecha" aria-hidden="true">↗</span>

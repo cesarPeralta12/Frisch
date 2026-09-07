@@ -201,6 +201,27 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .sabor:hover .sabor__flecha { transform: translate(4px, -4px); }
 
+/* Variante con foto: el patron del sabor va de fondo y la botella
+   ocupa el lugar de la inicial, para que todas midan igual. */
+.sabor--foto { background: var(--morado-oscuro); }
+.sabor--foto::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background-image: var(--fondo);
+  background-size: cover; background-position: center;
+}
+.sabor--foto::after {
+  inset: 0; right: auto; bottom: auto;
+  width: 100%; height: 100%; border-radius: 0;
+  background: linear-gradient(to top, rgba(42,18,53,.92) 10%, rgba(42,18,53,.2) 72%);
+}
+.sabor__foto {
+  align-self: center; margin: .4rem 0 auto;
+  height: 58%; width: auto;
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,.45));
+  transition: transform .45s cubic-bezier(.2,.7,.3,1);
+}
+.sabor:hover .sabor__foto { transform: scale(1.07) rotate(-3deg); }
+
 /* ---- Botellas con foto ----
    Tarjeta grande con el patron del sabor de fondo y la botella encima.
    Solo se usa en los sabores que tienen foto de producto. */
