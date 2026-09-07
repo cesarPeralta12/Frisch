@@ -25,15 +25,17 @@
 
       <div class="contenedor hero__grilla">
         <div class="hero__texto">
-          <p class="etiqueta">Bebida gaseosa sin azucar</p>
-          <h1>Atrevete<br>a lo nuevo.</h1>
+          <p class="etiqueta">0 azúcar</p>
+          <h1>Todo el sabor.<br>Cero vueltas.</h1>
           <p class="hero__bajada">
-            El sabor que sorprende. Chirimoya y Coco Loco, dos sabores
-            bolivianos con toda la burbuja y cero azucar.
+            Burbujas, fruta y cuatro sabores que no se parecen a lo de siempre.
           </p>
           <div class="hero__acciones">
-            <a class="boton boton--principal" href="#sabores">Ver los sabores</a>
-            <a class="boton boton--linea" href="#comprar">Donde comprar</a>
+            <a class="boton boton--principal" href="#sabores">Descubrir sabores ↓</a>
+            <% if (site.whatsapp) { %>
+              <a class="boton boton--linea" href="<%= site.wa('Hola! Quiero pedir Frisch.') %>"
+                 target="_blank" rel="noopener">Pedir por WhatsApp ↗</a>
+            <% } %>
           </div>
         </div>
 
@@ -43,7 +45,7 @@
         </div>
       </div>
 
-      <a class="bajar" href="#sabores" aria-label="Ir a los sabores">
+      <a class="bajar" href="#video" aria-label="Seguir bajando">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M6 9l6 6 6-6"/>
@@ -56,92 +58,101 @@
       </svg>
     </section>
 
-    <%# ---- SABORES --------------------------------------------------------
-        Solo hay material grafico de Chirimoya y Coco Loco. Si la empresa
-        confirma un tercer sabor, se agrega una tarjeta mas con su foto.
+    <%# ---- VIDEO ----------------------------------------------------------
+        Si VIDEO_URL trae una URL de insercion se usa un iframe; si no, se
+        sirve el archivo propio de /video. preload="none" hace que el video
+        solo se descargue cuando alguien le da play.
     --%>
-    <section class="seccion" id="sabores">
-      <div class="contenedor">
-        <p class="etiqueta">Nuestra linea</p>
-        <h2>Dos sabores que no veias venir</h2>
-        <p class="seccion__bajada">
-          Frutas de aca, en formato gaseosa. Sin azucar, sin quedarse corto
-          de sabor.
-        </p>
-
-        <div class="sabores">
-          <article class="sabor revelar" style="--fondo:url('/img/patron-chirimoya.jpg')">
-            <img class="sabor__botella" src="/img/botella-chirimoya.png"
-                 alt="Botella de Frisch Chirimoya" loading="lazy">
-            <span class="sabor__pastilla">Cero azucar</span>
-            <h3>Chirimoya</h3>
-            <p>Dulce, cremosa y distinta. La fruta que todos conocen, como nunca la probaste.</p>
-          </article>
-
-          <article class="sabor revelar revelar--2" style="--fondo:url('/img/patron-coco.jpg')">
-            <img class="sabor__botella" src="/img/botella-cocoloco.png"
-                 alt="Botella de Frisch Coco Loco" loading="lazy">
-            <span class="sabor__pastilla">Cero azucar</span>
-            <h3>Coco Loco</h3>
-            <p>Coco de verdad, suave y tropical. El que nadie espera encontrar en una gaseosa.</p>
-          </article>
+    <section class="seccion seccion--morada" id="video">
+      <div class="contenedor video-bloque revelar">
+        <div class="video-bloque__llamada">
+          <img src="/img/mira-el-video.png" alt="Mira el video" loading="lazy">
+        </div>
+        <div class="video-marco">
+          <% if (site.video) { %>
+            <iframe src="<%= site.video %>" title="Video de Frisch"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
+          <% } else { %>
+            <video controls preload="none" playsinline poster="/img/portada-video.jpg">
+              <source src="/video/frisch.mp4" type="video/mp4">
+              Tu navegador no puede reproducir este video.
+            </video>
+          <% } %>
         </div>
       </div>
     </section>
 
-    <%# ---- VIDEO ----------------------------------------------------------
-        La seccion solo aparece si VIDEO_URL esta configurada en Coolify.
-        Debe ser una URL de insercion (embed), no la del navegador.
+    <%# ---- SABORES --------------------------------------------------------
+        Las tarjetas son tipograficas a proposito: solo hay foto de botella
+        de Chirimoya y Coco. Cuando lleguen las de Guayaba y Achachairu se
+        pueden agregar sin romper el diseno.
     --%>
-    <% if (site.video) { %>
-      <section class="seccion seccion--morada" id="video">
-        <div class="contenedor video-bloque revelar">
-          <div class="video-bloque__llamada">
-            <img src="/img/mira-el-video.png" alt="Mira el video" loading="lazy">
-          </div>
-          <div class="video-marco">
-            <iframe src="<%= site.video %>" title="Video de Frisch"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen loading="lazy"></iframe>
-          </div>
+    <section class="seccion" id="sabores">
+      <div class="contenedor">
+        <p class="etiqueta">Elegí tu mood</p>
+        <h2>Cuatro formas de<br>sentir lo Frisch.</h2>
+        <p class="seccion__bajada">
+          Sabores tropicales con personalidad propia. Probá uno o armá tu combo.
+        </p>
+
+        <div class="sabores">
+          <%
+            const sabores = [
+              { n: '01', sigla: 'G',  mood: 'Vibrante',  nombre: 'Guayaba',    tono: '#e8455f' },
+              { n: '02', sigla: 'Ch', mood: 'Suave',     nombre: 'Chirimoya',  tono: '#9b47c9' },
+              { n: '03', sigla: 'C',  mood: 'Inesperado',nombre: 'Coco',       tono: '#f2c14e' },
+              { n: '04', sigla: 'A',  mood: 'Amazónico', nombre: 'Achachairú', tono: '#f2872f' },
+            ];
+          %>
+          <% sabores.forEach(function (s, i) { %>
+            <a class="sabor revelar<%= i % 3 ? ' revelar--' + ((i % 3) + 1) : '' %>"
+               style="--tono:<%= s.tono %>"
+               <% if (site.whatsapp) { %>href="<%= site.wa('Hola! Quiero pedir Frisch ' + s.nombre + '.') %>" target="_blank" rel="noopener"<% } else { %>href="#comprar"<% } %>>
+              <span class="sabor__numero"><%= s.n %></span>
+              <span class="sabor__sigla" aria-hidden="true"><%= s.sigla %></span>
+              <span class="sabor__mood"><%= s.mood %></span>
+              <h3><%= s.nombre %></h3>
+              <span class="sabor__flecha" aria-hidden="true">↗</span>
+            </a>
+          <% }) %>
         </div>
-      </section>
-    <% } %>
+      </div>
+    </section>
 
     <%# ---- FRANJA TROPICAL ------------------------------------------------ %>
     <section class="franja">
       <div class="contenedor revelar">
-        <h2>El sabor que sorprende</h2>
-        <p>Tomala bien fria. Es cuando mejor se siente.</p>
+        <h2>Hecha para refrescar distinto</h2>
+        <p>Tomala bien fría. Es cuando mejor se siente.</p>
       </div>
     </section>
 
-    <%# ---- BENEFICIOS ------------------------------------------------------ %>
+    <%# ---- LA MARCA -------------------------------------------------------- %>
     <section class="seccion beneficios" id="marca">
       <div class="contenedor">
-        <p class="etiqueta">La marca</p>
-        <h2>Sin azucar, sin excusas</h2>
+        <p class="etiqueta">Lo simple sabe mejor</p>
+        <h2>Sin azúcar.<br>Con toda la actitud.</h2>
         <p class="seccion__bajada">
-          Frisch nacio de una idea sencilla: que una gaseosa sin azucar no
-          tenia por que saber a menos, y que en vez de copiar los sabores de
-          siempre valia la pena usar los nuestros.
+          Una gaseosa fresca, con sabores nacidos de nuestra tierra y una
+          propuesta hecha para quienes quieren elegir distinto.
         </p>
 
         <div class="beneficios__grilla">
           <article class="revelar">
-            <span class="beneficios__cifra">0 g</span>
-            <h3>Cero azucar</h3>
-            <p>Toda la gaseosa, sin el azucar. Sin renunciar al sabor ni a la burbuja.</p>
+            <span class="beneficios__cifra">0</span>
+            <h3>azúcar</h3>
+            <p>Toda la gaseosa, sin el azúcar. Sin renunciar al sabor ni a la burbuja.</p>
           </article>
           <article class="revelar revelar--2">
-            <span class="beneficios__cifra">2</span>
-            <h3>Sabores nuestros</h3>
-            <p>Chirimoya y Coco Loco. Frutas que ya conoces, en un formato que no esperabas.</p>
+            <span class="beneficios__cifra">4</span>
+            <h3>sabores</h3>
+            <p>Guayaba, chirimoya, coco y achachairú. Frutas de acá, en formato gaseosa.</p>
           </article>
           <article class="revelar revelar--3">
             <span class="beneficios__cifra">100%</span>
-            <h3>Boliviana</h3>
-            <p>Produccion nacional, pensada para el gusto de aca.</p>
+            <h3>actitud tropical</h3>
+            <p>Producción nacional, pensada para el gusto de acá.</p>
           </article>
         </div>
       </div>
@@ -153,39 +164,41 @@
     --%>
     <section class="seccion" id="comprar">
       <div class="contenedor">
-        <p class="etiqueta">Donde comprar</p>
-        <h2>Nos encuentras aca</h2>
+        <p class="etiqueta">Dónde comprar</p>
+        <h2>Nos encontrás acá</h2>
         <p class="seccion__bajada">
           En supermercados, por delivery y en puntos de venta seleccionados.
-          Si no la ves en tu zona, escribenos y te decimos donde conseguirla.
+          Si no la ves en tu zona, escribinos y te decimos dónde conseguirla.
         </p>
 
         <div class="puntos">
           <article class="punto revelar">
             <h3>Hipermaxi</h3>
-            <p>En la gondola de bebidas de tus sucursales de siempre.</p>
+            <p>En la góndola de bebidas de tus sucursales de siempre.</p>
           </article>
           <article class="punto revelar revelar--2">
             <h3>PedidosYa</h3>
-            <p>Pidela por delivery y te llega fria a la puerta.</p>
+            <p>Pedila por delivery y te llega fría a la puerta.</p>
           </article>
           <article class="punto revelar revelar--3">
-            <h3>Market Tu Super</h3>
-            <p>Disponible tambien en Market Tu Super.</p>
+            <h3>Market Tu Súper</h3>
+            <p>Disponible también en Market Tu Súper.</p>
           </article>
         </div>
+      </div>
+    </section>
 
-        <div class="cta-caja revelar">
-          <div>
-            <h3>Quieres vender Frisch?</h3>
-            <p>Si tienes un negocio y te interesa distribuir la marca, hablemos.</p>
-          </div>
-          <div class="cta-caja__acciones">
-            <% if (site.whatsapp) { %>
-              <a class="boton boton--principal" href="https://wa.me/<%= site.whatsapp %>">WhatsApp</a>
-            <% } %>
-            <a class="boton boton--linea" href="mailto:<%= site.email %>">Escribir un correo</a>
-          </div>
+    <%# ---- CIERRE ---------------------------------------------------------- %>
+    <section class="cierre">
+      <div class="contenedor cierre__caja revelar">
+        <p class="etiqueta etiqueta--clara">¿Ya elegiste?</p>
+        <h2>Tu próximo sabor<br>favorito está acá.</h2>
+        <div class="cierre__acciones">
+          <% if (site.whatsapp) { %>
+            <a class="boton boton--principal" href="<%= site.wa('Hola! Quiero pedir Frisch.') %>"
+               target="_blank" rel="noopener">Pedir por WhatsApp ↗</a>
+          <% } %>
+          <a class="boton boton--linea" href="#sabores">Ver los sabores</a>
         </div>
       </div>
     </section>

@@ -29,6 +29,11 @@ const site = {
   year: new Date().getFullYear(),
 };
 
+// Arma un enlace de WhatsApp con el mensaje ya escrito.
+site.wa = function (mensaje) {
+  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+};
+
 // ---- Middlewares ----
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

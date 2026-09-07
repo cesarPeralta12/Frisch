@@ -3,3 +3,6 @@ npm-debug.log*
 .env
 *.log
 .DS_Store
+
+# Video original sin comprimir. En el repositorio va public/video/frisch.mp4
+Video frisch.mp4

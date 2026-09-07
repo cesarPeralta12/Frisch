@@ -53,20 +53,28 @@ Las otras fuentes que mando el cliente (MuseoSansRounded, Bebas Kai,
 Big Jano) **no se incrustan a proposito**: venian en el paquete de imprenta,
 y una licencia de impresion no cubre el uso como webfont.
 
+### Video
+
+El original (`Video frisch.mp4`, 31 MB) **no va al repositorio**, esta en el
+`.gitignore`. Lo que se publica es `public/video/frisch.mp4`, recomprimido con
+ffmpeg a CRF 20: mismo 848x480, 6,6 MB. La portada se saco del segundo 1,5.
+
+Para regenerarlo si llega una version nueva:
+
+```bash
+ffmpeg -i "Video frisch.mp4" -c:v libx264 -crf 20 -preset slow -profile:v high   -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart public/video/frisch.mp4
+```
+
+Si algun dia el video se sube a YouTube, basta con poner `VIDEO_URL` en Coolify
+con la URL de insercion y la pagina usa el iframe en vez del archivo propio.
+
 ### Pendiente
 
-- [ ] **Video** — la seccion existe pero solo aparece si se configura la
-      variable `VIDEO_URL` en Coolify, con la URL de insercion (embed).
-      El cliente mando los graficos de "MIRA EL VIDEO" pero ningun video.
-- [ ] **Guayaba** — el Instagram menciona ese sabor, pero en el material
-      no hay ni una imagen. La web muestra solo Chirimoya y Coco Loco.
-      Confirmar si existe y pedir la foto.
+- [ ] **El video esta en 848x480**, que es resolucion baja. En pantallas
+      grandes se ve blando. Si existe un master en mejor calidad, conviene
+      pedirlo: el limite es el original, no la compresion.
+- [ ] **Fotos de botella de Guayaba y Achachairu.** Solo hay de Chirimoya y
+      Coco. Por eso las tarjetas de sabor son tipograficas, para que las
+      cuatro se vean iguales.
 - [ ] **Enlaces de compra** — falta el link directo de PedidosYa y el de la
       app propia que promocionan en Instagram.
-- [ ] **Descripciones de los sabores** — escritas por aproximacion, conviene
-      que las valide la empresa.
-
-## Despliegue
-
-Coolify, proyecto `Frisch` / entorno `production`, con build por `Dockerfile`.
-El contenedor expone el puerto `3000`.

@@ -159,40 +159,47 @@ img { max-width: 100%; height: auto; display: block; }
 /* Onda que separa el hero de la seccion siguiente */
 .onda { display: block; width: 100%; height: auto; margin-top: -1px; }
 
-/* ---- Sabores ---- */
-.sabores { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+/* ---- Sabores ----
+   Tarjetas tipograficas: funcionan con o sin foto de producto. */
+.sabores {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem; margin-top: 3rem;
+}
 .sabor {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column;
+  min-height: 320px; padding: 1.6rem;
   border-radius: var(--radio); box-shadow: var(--sombra);
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 2rem;
-  color: #fff;
-  isolation: isolate;
+  color: #fff; text-decoration: none;
+  background: linear-gradient(160deg, var(--tono), var(--morado-oscuro) 115%);
 }
-.sabor::before {
-  content: ""; position: absolute; inset: 0; z-index: -2;
-  background-image: var(--fondo);
-  background-size: cover; background-position: center;
-}
+/* Circulo de color que asoma detras de la sigla */
 .sabor::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(to top, rgba(42,18,53,.9) 5%, rgba(42,18,53,.15) 70%);
+  content: ""; position: absolute; z-index: -1;
+  right: -70px; bottom: -70px; width: 220px; height: 220px;
+  border-radius: 50%; background: rgba(255,255,255,.13);
 }
-.sabor__botella {
-  position: absolute; top: 6%; right: 6%; z-index: 1;
-  height: 62%; width: auto;
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,.4));
-}
-.sabor h3 { font-size: 2rem; margin-bottom: .3rem; }
-.sabor p { margin: 0; color: rgba(255,255,255,.88); max-width: 30ch; }
-.sabor__pastilla {
-  align-self: flex-start; margin-bottom: .8rem;
-  background: var(--amarillo); color: var(--morado-oscuro);
+.sabor__numero {
   font-family: var(--tipo-titulo); font-weight: 600;
-  font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
-  padding: .35rem .9rem; border-radius: 999px;
+  font-size: .85rem; letter-spacing: .16em;
+  color: rgba(255,255,255,.65);
 }
+.sabor__sigla {
+  font-family: var(--tipo-titulo); font-weight: 700;
+  font-size: 4.4rem; line-height: 1;
+  margin: .6rem 0 auto; color: rgba(255,255,255,.9);
+}
+.sabor__mood {
+  font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.75); margin-bottom: .2rem;
+}
+.sabor h3 { font-size: 1.7rem; margin: 0; }
+.sabor__flecha {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-size: 1.3rem; color: rgba(255,255,255,.8);
+  transition: transform .25s ease;
+}
+.sabor:hover .sabor__flecha { transform: translate(4px, -4px); }
 
 /* ---- Beneficios ---- */
 .beneficios__grilla {
@@ -233,9 +240,11 @@ img { max-width: 100%; height: auto; display: block; }
   border: 5px solid var(--amarillo);
   background: #000;
 }
-.video-marco iframe {
+.video-marco iframe,
+.video-marco video {
   position: absolute; inset: 0;
   width: 100%; height: 100%; border: 0;
+  object-fit: cover; background: #000;
 }
 
 /* ---- Franja tropical ---- */
@@ -278,6 +287,18 @@ img { max-width: 100%; height: auto; display: block; }
 .cta-caja p { color: rgba(255,255,255,.85); margin: 0; }
 .cta-caja__acciones { display: flex; flex-wrap: wrap; gap: .8rem; }
 
+/* ---- Cierre ---- */
+.cierre { padding: 0 0 clamp(3rem, 8vw, 5rem); }
+.cierre__caja {
+  background: linear-gradient(150deg, var(--morado), var(--morado-oscuro));
+  color: #fff; border-radius: var(--radio); box-shadow: var(--sombra);
+  padding: clamp(2.5rem, 6vw, 4rem); text-align: center;
+}
+.cierre__acciones {
+  display: flex; flex-wrap: wrap; gap: .9rem;
+  justify-content: center; margin-top: 1.6rem;
+}
+
 /* ---- Pie ---- */
 .pie { background: var(--morado-oscuro); color: rgba(255,255,255,.8); padding: 3.5rem 0 1.5rem; }
 .pie__grilla { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
@@ -308,7 +329,7 @@ img { max-width: 100%; height: auto; display: block; }
   .hero__acciones { justify-content: center; }
   .hero__botellas img { max-width: 190px; }
   .hero__deco { display: none; }
-  .sabores { grid-template-columns: 1fr; }
+  .sabores { grid-template-columns: repeat(2, 1fr); }
   .video-bloque { grid-template-columns: 1fr; }
   .video-bloque__llamada img { max-width: 190px; }
   .beneficios__grilla, .puntos { grid-template-columns: 1fr; }
@@ -329,8 +350,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 560px) {
-  .sabor { min-height: 360px; }
-  .sabor__botella { height: 48%; }
+  .sabores { grid-template-columns: 1fr; }
+  .sabor { min-height: 230px; }
+  .sabor__sigla { font-size: 3.4rem; }
 }
 
 /* =====================================================================
@@ -412,8 +434,6 @@ html { scroll-behavior: smooth; }
 /* ---- Reacciones al pasar el mouse ---- */
 .sabor { transition: transform .3s ease, box-shadow .3s ease; }
 .sabor:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(58,15,82,.28); }
-.sabor__botella { transition: transform .45s cubic-bezier(.2,.7,.3,1); }
-.sabor:hover .sabor__botella { transform: scale(1.07) rotate(-3deg); }
 
 .punto, .beneficios article {
   transition: transform .25s ease, box-shadow .25s ease;
