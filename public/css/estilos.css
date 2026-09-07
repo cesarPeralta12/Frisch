@@ -232,7 +232,15 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid; grid-template-columns: .3fr .7fr;
   gap: 2.5rem; align-items: center;
 }
-.video-bloque__llamada img { width: min(100%, 260px); margin-inline: auto; }
+.video-bloque__llamada img {
+  width: min(100%, 280px); margin-inline: auto;
+  /* Empuja levemente hacia la derecha, que es donde apunta la mano. */
+  animation: senalar 2.4s ease-in-out infinite;
+}
+@keyframes senalar {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 12px 0; }
+}
 .video-marco {
   position: relative; padding-top: 56.25%;
   border-radius: var(--radio); overflow: hidden;
