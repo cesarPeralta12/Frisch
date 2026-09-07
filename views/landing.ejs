@@ -120,6 +120,46 @@
       </div>
     </section>
 
+    <%# ---- BOTELLAS --------------------------------------------------------
+        Solo se listan los sabores que tienen foto. Para sumar Guayaba o
+        Achachairu cuando lleguen sus fotos, basta con agregar una fila al
+        arreglo de abajo: el resto se arma solo.
+    --%>
+    <%
+      const botellas = [
+        { nombre: 'Chirimoya', img: '/img/botella-chirimoya.png',
+          fondo: '/img/patron-chirimoya.jpg',
+          texto: 'Dulce, cremosa y distinta. La fruta que todos conocen, como nunca la probaste.' },
+        { nombre: 'Coco Loco', img: '/img/botella-cocoloco.png',
+          fondo: '/img/patron-coco.jpg',
+          texto: 'Coco de verdad, suave y tropical. El que nadie espera encontrar en una gaseosa.' },
+      ];
+    %>
+    <% if (botellas.length) { %>
+      <section class="seccion" id="botellas">
+        <div class="contenedor">
+          <p class="etiqueta">En botella</p>
+          <h2>Así se ven</h2>
+          <p class="seccion__bajada">
+            Fría, con la burbuja justa y lista para abrir.
+          </p>
+
+          <div class="botellas">
+            <% botellas.forEach(function (b, i) { %>
+              <article class="botella-card revelar<%= i ? ' revelar--2' : '' %>"
+                       style="--fondo:url('<%= b.fondo %>')">
+                <img class="botella-card__foto" src="<%= b.img %>"
+                     alt="Botella de Frisch <%= b.nombre %>" loading="lazy">
+                <span class="sabor__pastilla">Cero azúcar</span>
+                <h3><%= b.nombre %></h3>
+                <p><%= b.texto %></p>
+              </article>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+    <% } %>
+
     <%# ---- FRANJA TROPICAL ------------------------------------------------ %>
     <section class="franja">
       <div class="contenedor revelar">
