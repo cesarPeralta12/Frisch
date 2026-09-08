@@ -149,6 +149,9 @@ img { max-width: 100%; height: auto; display: block; }
 .hero__deco--cocos { bottom: -30px; left: -60px; width: 420px; }
 .hero__deco--chiris { top: 20px; right: -40px; width: 340px; }
 
+/* El video vive dentro del hero, sin corte de color entre medio */
+.hero__video { position: relative; z-index: 2; padding-bottom: 3.5rem; }
+
 /* Onda que separa el hero de la seccion siguiente */
 .onda { display: block; width: 100%; height: auto; margin-top: -1px; }
 
@@ -202,8 +205,8 @@ img { max-width: 100%; height: auto; display: block; }
   background: linear-gradient(to top, rgba(42,18,53,.92) 10%, rgba(42,18,53,.2) 72%);
 }
 .sabor__foto {
-  align-self: center; margin: .4rem 0 auto;
-  height: 58%; width: auto;
+  align-self: center; margin: .8rem auto auto;
+  height: 250px; width: auto;
   filter: drop-shadow(0 14px 22px rgba(0,0,0,.45));
   transition: transform .45s cubic-bezier(.2,.7,.3,1);
 }
@@ -332,6 +335,7 @@ img { max-width: 100%; height: auto; display: block; }
   .hero__acciones { justify-content: center; }
   .hero__deco { display: none; }
   .sabores { grid-template-columns: repeat(2, 1fr); }
+  .sabor__foto { height: 280px; }
     .beneficios__grilla, .puntos { grid-template-columns: 1fr; }
   .pie__grilla { grid-template-columns: 1fr; }
 
@@ -352,6 +356,7 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 560px) {
   .sabores { grid-template-columns: 1fr; }
   .sabor { min-height: 230px; }
+  .sabor__foto { height: 300px; }
   }
 
 /* =====================================================================
@@ -398,22 +403,6 @@ html { scroll-behavior: smooth; }
 }
 
 
-/* ---- Flecha de bajar ---- */
-.bajar {
-  position: absolute; bottom: 74px; left: 50%; z-index: 3;
-  translate: -50% 0;
-  display: grid; place-items: center;
-  width: 46px; height: 46px; border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.5); color: #fff;
-  text-decoration: none;
-  animation: rebotar 2.2s ease-in-out infinite;
-}
-.bajar:hover { background: rgba(255,255,255,.15); }
-@keyframes rebotar {
-  0%, 100% { translate: -50% 0; }
-  50%      { translate: -50% 10px; }
-}
-
 /* ---- Aparicion al hacer scroll ---- */
 .js .revelar {
   opacity: 0; translate: 0 28px;
@@ -443,5 +432,5 @@ html { scroll-behavior: smooth; }
     transition: none !important;
   }
   .revelar { opacity: 1; translate: none; }
-  .burbujas, .bajar { display: none; }
+  .burbujas { display: none; }
 }

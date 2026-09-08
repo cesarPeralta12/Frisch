@@ -40,28 +40,11 @@
         </div>
       </div>
 
-      <a class="bajar" href="#video" aria-label="Seguir bajando">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </a>
-
-      <%# Onda decorativa que empalma con el color de fondo de la pagina. %>
-      <svg class="onda" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#fff8ef" d="M0,45 C240,90 480,0 720,25 C960,50 1200,90 1440,55 L1440,90 L0,90 Z"></path>
-      </svg>
-    </section>
-
-    <%# ---- VIDEO ----------------------------------------------------------
-        Si VIDEO_URL trae una URL de insercion se usa un iframe; si no, se
-        sirve el archivo propio de /video.
-        La reproduccion automatica solo funciona con el video en silencio:
-        todos los navegadores bloquean el autoplay con sonido. Por eso va
-        muted y con controles, para que quien quiera pueda activar el audio.
-    --%>
-    <section class="seccion seccion--morada" id="video">
-      <div class="contenedor revelar">
+      <%# El video va dentro del hero, sin corte de color entre medio.
+          La reproduccion automatica solo funciona en silencio: todos los
+          navegadores bloquean el autoplay con sonido. Por eso va muted y
+          con controles, para que quien quiera pueda activar el audio. --%>
+      <div class="contenedor hero__video">
         <div class="video-marco">
           <% if (site.video) { %>
             <iframe src="<%= site.video %>" title="Video de Frisch"
@@ -75,6 +58,11 @@
           <% } %>
         </div>
       </div>
+
+      <%# Onda decorativa que empalma con el color de fondo de la pagina. %>
+      <svg class="onda" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#fff8ef" d="M0,45 C240,90 480,0 720,25 C960,50 1200,90 1440,55 L1440,90 L0,90 Z"></path>
+      </svg>
     </section>
 
     <%# ---- SABORES --------------------------------------------------------
@@ -96,7 +84,7 @@
             // inicial. Para sumar una foto basta con agregar img y fondo.
             const sabores = [
               { n: '01', mood: 'Vibrante',   nombre: 'Guayaba',   tono: '#e8455f',
-                img: '/img/botella-guayaba.webp',      fondo: '/img/patron-guayaba.jpg' },
+                img: '/img/botella-guayaba-2.webp',      fondo: '/img/patron-guayaba.jpg' },
               { n: '02', mood: 'Suave',      nombre: 'Chirimoya', tono: '#9b47c9',
                 img: '/img/botella-chirimoya-2.webp', fondo: '/img/patron-chirimoya.jpg' },
               { n: '03', mood: 'Inesperado', nombre: 'Coco',      tono: '#f2c14e',
