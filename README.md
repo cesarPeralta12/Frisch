@@ -73,8 +73,8 @@ con la URL de insercion y la pagina usa el iframe en vez del archivo propio.
 - [ ] **El video esta en 848x480**, que es resolucion baja. En pantallas
       grandes se ve blando. Si existe un master en mejor calidad, conviene
       pedirlo: el limite es el original, no la compresion.
-- [ ] **Fotos de botella de Guayaba y Achachairu.** Solo hay de Chirimoya y
-      Coco. Por eso las tarjetas de sabor son tipograficas, para que las
-      cuatro se vean iguales.
+- [ ] **Patron grafico de Guayaba.** Chirimoya y Coco tienen un fondo con
+      su fruta; Guayaba usa el degradado de su color porque no hay imagen
+      de guayabas en el material.
 - [ ] **Enlaces de compra** — falta el link directo de PedidosYa y el de la
       app propia que promocionan en Instagram.

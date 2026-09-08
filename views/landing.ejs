@@ -28,7 +28,7 @@
           <p class="etiqueta">0 azúcar</p>
           <h1>Todo el sabor.<br>Cero vueltas.</h1>
           <p class="hero__bajada">
-            Burbujas, fruta y cuatro sabores que no se parecen a lo de siempre.
+            Burbujas, fruta y tres sabores que no se parecen a lo de siempre.
           </p>
           <div class="hero__acciones">
             <a class="boton boton--principal" href="#sabores">Descubrir sabores ↓</a>
@@ -78,14 +78,14 @@
     </section>
 
     <%# ---- SABORES --------------------------------------------------------
-        Las tarjetas son tipograficas a proposito: solo hay foto de botella
-        de Chirimoya y Coco. Cuando lleguen las de Guayaba y Achachairu se
-        pueden agregar sin romper el diseno.
+        Los tres sabores tienen foto de botella. Chirimoya y Coco ademas
+        llevan el patron grafico de su fruta de fondo; Guayaba todavia no
+        tiene patron, asi que usa el degradado de su color.
     --%>
     <section class="seccion" id="sabores">
       <div class="contenedor">
         <p class="etiqueta">Elegí tu mood</p>
-        <h2>Cuatro formas de<br>sentir lo Frisch.</h2>
+        <h2>Tres formas de<br>sentir lo Frisch.</h2>
         <p class="seccion__bajada">
           Sabores tropicales con personalidad propia. Probá uno o armá tu combo.
         </p>
@@ -96,24 +96,20 @@
             // fondo; los que todavia no tienen foto se muestran con la
             // inicial. Para sumar una foto basta con agregar img y fondo.
             const sabores = [
-              { n: '01', sigla: 'G',  mood: 'Vibrante',  nombre: 'Guayaba',    tono: '#e8455f' },
-              { n: '02', sigla: 'Ch', mood: 'Suave',     nombre: 'Chirimoya',  tono: '#9b47c9',
+              { n: '01', mood: 'Vibrante',   nombre: 'Guayaba',   tono: '#e8455f',
+                img: '/img/botella-guayaba.webp' },
+              { n: '02', mood: 'Suave',      nombre: 'Chirimoya', tono: '#9b47c9',
                 img: '/img/botella-chirimoya-2.webp', fondo: '/img/patron-chirimoya.jpg' },
-              { n: '03', sigla: 'C',  mood: 'Inesperado',nombre: 'Coco',       tono: '#f2c14e',
-                img: '/img/botella-coco-2.webp',   fondo: '/img/patron-coco.jpg' },
-              { n: '04', sigla: 'A',  mood: 'Amazónico', nombre: 'Achachairú', tono: '#f2872f' },
+              { n: '03', mood: 'Inesperado', nombre: 'Coco',      tono: '#f2c14e',
+                img: '/img/botella-coco-2.webp',      fondo: '/img/patron-coco.jpg' },
             ];
           %>
           <% sabores.forEach(function (s, i) { %>
-            <a class="sabor<%= s.img ? ' sabor--foto' : '' %> revelar<%= i % 3 ? ' revelar--' + ((i % 3) + 1) : '' %>"
+            <a class="sabor sabor--foto<%= s.fondo ? ' sabor--patron' : '' %> revelar<%= i % 3 ? ' revelar--' + ((i % 3) + 1) : '' %>"
                style="--tono:<%= s.tono %><%= s.fondo ? ";--fondo:url('" + s.fondo + "')" : '' %>"
                <% if (site.whatsapp) { %>href="<%= site.wa('Hola! Quiero pedir Frisch ' + s.nombre + '.') %>" target="_blank" rel="noopener"<% } else { %>href="#comprar"<% } %>>
               <span class="sabor__numero"><%= s.n %></span>
-              <% if (s.img) { %>
-                <img class="sabor__foto" src="<%= s.img %>" alt="Botella de Frisch <%= s.nombre %>" loading="lazy">
-              <% } else { %>
-                <span class="sabor__sigla" aria-hidden="true"><%= s.sigla %></span>
-              <% } %>
+              <img class="sabor__foto" src="<%= s.img %>" alt="Botella de Frisch <%= s.nombre %>" loading="lazy">
               <span class="sabor__mood"><%= s.mood %></span>
               <h3><%= s.nombre %></h3>
               <span class="sabor__flecha" aria-hidden="true">↗</span>
@@ -148,9 +144,9 @@
             <p>Toda la gaseosa, sin el azúcar. Sin renunciar al sabor ni a la burbuja.</p>
           </article>
           <article class="revelar revelar--2">
-            <span class="beneficios__cifra">4</span>
+            <span class="beneficios__cifra">3</span>
             <h3>sabores</h3>
-            <p>Guayaba, chirimoya, coco y achachairú. Frutas de acá, en formato gaseosa.</p>
+            <p>Guayaba, chirimoya y coco. Frutas de acá, en formato gaseosa.</p>
           </article>
           <article class="revelar revelar--3">
             <span class="beneficios__cifra">100%</span>
