@@ -38,11 +38,6 @@
             <% } %>
           </div>
         </div>
-
-        <div class="hero__botellas">
-          <img src="/img/botella-chirimoya.png" alt="Frisch Chirimoya" width="667" height="1000">
-          <img src="/img/botella-cocoloco.png" alt="Frisch Coco Loco" width="631" height="1000">
-        </div>
       </div>
 
       <a class="bajar" href="#video" aria-label="Seguir bajando">
@@ -60,21 +55,20 @@
 
     <%# ---- VIDEO ----------------------------------------------------------
         Si VIDEO_URL trae una URL de insercion se usa un iframe; si no, se
-        sirve el archivo propio de /video. preload="none" hace que el video
-        solo se descargue cuando alguien le da play.
+        sirve el archivo propio de /video.
+        La reproduccion automatica solo funciona con el video en silencio:
+        todos los navegadores bloquean el autoplay con sonido. Por eso va
+        muted y con controles, para que quien quiera pueda activar el audio.
     --%>
     <section class="seccion seccion--morada" id="video">
-      <div class="contenedor video-bloque revelar">
-        <div class="video-bloque__llamada">
-          <img src="/img/mira-video.png" alt="Mira el video" loading="lazy">
-        </div>
+      <div class="contenedor revelar">
         <div class="video-marco">
           <% if (site.video) { %>
             <iframe src="<%= site.video %>" title="Video de Frisch"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen loading="lazy"></iframe>
           <% } else { %>
-            <video controls preload="none" playsinline poster="/img/portada-video.jpg">
+            <video autoplay muted loop playsinline controls poster="/img/portada-video.jpg">
               <source src="/video/frisch.mp4" type="video/mp4">
               Tu navegador no puede reproducir este video.
             </video>
@@ -104,9 +98,9 @@
             const sabores = [
               { n: '01', sigla: 'G',  mood: 'Vibrante',  nombre: 'Guayaba',    tono: '#e8455f' },
               { n: '02', sigla: 'Ch', mood: 'Suave',     nombre: 'Chirimoya',  tono: '#9b47c9',
-                img: '/img/botella-chirimoya.png', fondo: '/img/patron-chirimoya.jpg' },
+                img: '/img/botella-chirimoya-2.webp', fondo: '/img/patron-chirimoya.jpg' },
               { n: '03', sigla: 'C',  mood: 'Inesperado',nombre: 'Coco',       tono: '#f2c14e',
-                img: '/img/botella-cocoloco.png',  fondo: '/img/patron-coco.jpg' },
+                img: '/img/botella-coco-2.webp',   fondo: '/img/patron-coco.jpg' },
               { n: '04', sigla: 'A',  mood: 'Amazónico', nombre: 'Achachairú', tono: '#f2872f' },
             ];
           %>
@@ -128,46 +122,6 @@
         </div>
       </div>
     </section>
-
-    <%# ---- BOTELLAS --------------------------------------------------------
-        Solo se listan los sabores que tienen foto. Para sumar Guayaba o
-        Achachairu cuando lleguen sus fotos, basta con agregar una fila al
-        arreglo de abajo: el resto se arma solo.
-    --%>
-    <%
-      const botellas = [
-        { nombre: 'Chirimoya', img: '/img/botella-chirimoya.png',
-          fondo: '/img/patron-chirimoya.jpg',
-          texto: 'Dulce, cremosa y distinta. La fruta que todos conocen, como nunca la probaste.' },
-        { nombre: 'Coco Loco', img: '/img/botella-cocoloco.png',
-          fondo: '/img/patron-coco.jpg',
-          texto: 'Coco de verdad, suave y tropical. El que nadie espera encontrar en una gaseosa.' },
-      ];
-    %>
-    <% if (botellas.length) { %>
-      <section class="seccion" id="botellas">
-        <div class="contenedor">
-          <p class="etiqueta">En botella</p>
-          <h2>Así se ven</h2>
-          <p class="seccion__bajada">
-            Fría, con la burbuja justa y lista para abrir.
-          </p>
-
-          <div class="botellas">
-            <% botellas.forEach(function (b, i) { %>
-              <article class="botella-card revelar<%= i ? ' revelar--2' : '' %>"
-                       style="--fondo:url('<%= b.fondo %>')">
-                <img class="botella-card__foto" src="<%= b.img %>"
-                     alt="Botella de Frisch <%= b.nombre %>" loading="lazy">
-                <span class="sabor__pastilla">Cero azúcar</span>
-                <h3><%= b.nombre %></h3>
-                <p><%= b.texto %></p>
-              </article>
-            <% }) %>
-          </div>
-        </div>
-      </section>
-    <% } %>
 
     <%# ---- FRANJA TROPICAL ------------------------------------------------ %>
     <section class="franja">
